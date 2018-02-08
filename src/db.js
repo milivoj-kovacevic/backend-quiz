@@ -11,8 +11,22 @@ class Database {
   }
 
   set(modelName, datum) {
-    // You should write this method
-    // and use it for inserts and updates
+    const data = this.data[modelName];
+    let item = data.find(x => x.id === datum.id)
+    if (item) {
+      for (let prop in datum) {
+        if (item.hasOwnProperty(prop))
+          item[prop] = datum[prop]
+      }
+    } else {
+      item = {
+        ...datum,
+        id: data.length + 1
+      }
+      data.push(item)
+    }
+
+    return item
   }
 
   delete(modelName, datum) {

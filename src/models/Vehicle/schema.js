@@ -12,6 +12,17 @@ type Query {
 }
 
 type Mutation {
+  createVehicle(input: SaveVehicleInput!): SaveVehiclePayload
+  updateVehicle(input: SaveVehicleInput!): SaveVehiclePayload
 }
 
-`
+input SaveVehicleInput {
+  id: Int
+  year: Int
+  make: String
+  model: String
+}
+
+type SaveVehiclePayload{
+  vehicle: Vehicle!
+}`
